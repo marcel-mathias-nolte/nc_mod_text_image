@@ -1,0 +1,21 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="system/modules/lmf_mod_text/languages/en/modules.php" source-language="en" target-language="de">
+    <body>
+      <trans-unit id="FMD.content">
+        <source>Content elements</source>
+      </trans-unit>
+      <trans-unit id="FMD.text.0">
+        <source>Text</source>
+      </trans-unit>
+      <trans-unit id="FMD.text.1">
+        <source>Generates a rich text element.</source>
+      </trans-unit>
+      <trans-unit id="FMD.image.0">
+        <source>Image</source>
+      </trans-unit>
+      <trans-unit id="FMD.image.1">
+        <source>Generates a stand-alone image.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
