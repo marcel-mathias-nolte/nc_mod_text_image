@@ -2,18 +2,25 @@
 
 /**
  * Contao Open Source CMS
- *
- * Copyright (c) 2005-2015 Leo Feyer
- *
- * @license LGPL-3.0+
+ * 
+ * Copyright (C) 2005-2012 Leo Feyer
+ * 
+ * @package   NC Module Text And Image
+ * @author    Marcel Mathias Nolte
+ * @copyright Marcel Mathias Nolte 2015
+ * @website	  https://www.noltecomputer.com
+ * @license   <marcel.nolte@noltecomputer.de> wrote this file. As long as you retain this notice you
+ *            can do whatever you want with this stuff. If we meet some day, and you think this stuff 
+ *            is worth it, you can buy me a beer in return. Meanwhile you can provide a link to my
+ *            homepage, if you want, or send me a postcard. Be creative! Marcel Mathias Nolte
  */
 
 
 /**
  * Table tl_module
  */
-$GLOBALS['TL_DCA']['tl_module']['palettes']['text'] = '{title_legend},name,headline,type;{text_legend},text;{image_legend},addImage;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
-$GLOBALS['TL_DCA']['tl_module']['palettes']['image'] = '{title_legend},name,headline,type;{source_legend},singleSRC;{image_legend},alt,title,size,imagemargin,imageUrl,fullsize,caption;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['ncText'] = '{title_legend},name,headline,type;{text_legend},text;{image_legend},addImage;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['ncImage'] = '{title_legend},name,headline,type;{source_legend},singleSRC;{image_legend},alt,title,size,imagemargin,imageUrl,fullsize,caption;{template_legend:hide},customTpl;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
 $GLOBALS['TL_DCA']['tl_module']['subpalettes']['addImage'] = 'singleSRC,alt,title,size,imagemargin,imageUrl,fullsize,caption,floating';
 $GLOBALS['TL_DCA']['tl_module']['fields']['text'] = array
 (
@@ -33,8 +40,8 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['addImage'] = array
 	'eval'                    => array('submitOnChange'=>true),
 	'sql'                     => "char(1) NOT NULL default ''"
 );
-$GLOBALS['TL_DCA']['tl_module']['fields']['singleSRC']['load_callback'][] = array('tl_module_text_image', 'setSingleSrcFlags');
-$GLOBALS['TL_DCA']['tl_module']['fields']['singleSRC']['save_callback'][] = array('tl_module_text_image', 'storeFileMetaInformation');
+$GLOBALS['TL_DCA']['tl_module']['fields']['singleSRC']['load_callback'][] = array('tl_module_nc_text_image', 'setSingleSrcFlags');
+$GLOBALS['TL_DCA']['tl_module']['fields']['singleSRC']['save_callback'][] = array('tl_module_nc_text_image', 'storeFileMetaInformation');
 $GLOBALS['TL_DCA']['tl_module']['fields']['alt'] = array
 (
 	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['alt'],
@@ -71,7 +78,7 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['imageUrl'] = array
 	'eval'                    => array('rgxp'=>'url', 'decodeEntities'=>true, 'maxlength'=>255, 'fieldType'=>'radio', 'filesOnly'=>true, 'tl_class'=>'w50 wizard'),
 	'wizard' => array
 	(
-		array('tl_module_text_image', 'pagePicker')
+		array('tl_module_nc_text_image', 'pagePicker')
 	),
 	'sql'                     => "varchar(255) NOT NULL default ''"
 );
@@ -97,11 +104,14 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['floating'] = array
 );
 
 /**
- * Provide miscellaneous methods that are used by the data configuration array.
+ * Class tl_module_nc_text_image
  *
- * @author Leo Feyer <https://github.com/leofeyer>
+ * Provide miscellaneous methods that are used by the data configuration array.
+ * @package   NC Module Text And Image
+ * @author    Marcel Mathias Nolte
+ * @copyright Marcel Mathias Nolte 2015
  */
-class tl_module_text_image_image extends Backend
+class tl_module_nc_text_image extends Backend
 {
 
 	/**
