@@ -2,28 +2,37 @@
 
 /**
  * Contao Open Source CMS
- *
- * Copyright (c) 2005-2015 Leo Feyer
- *
- * @license LGPL-3.0+
+ * 
+ * Copyright (C) 2005-2012 Leo Feyer
+ * 
+ * @package   NC Module Text And Image
+ * @author    Marcel Mathias Nolte
+ * @copyright Marcel Mathias Nolte 2015
+ * @website	  https://www.noltecomputer.com
+ * @license   <marcel.nolte@noltecomputer.de> wrote this file. As long as you retain this notice you
+ *            can do whatever you want with this stuff. If we meet some day, and you think this stuff 
+ *            is worth it, you can buy me a beer in return. Meanwhile you can provide a link to my
+ *            homepage, if you want, or send me a postcard. Be creative! Marcel Mathias Nolte
  */
 
-namespace Contao;
+namespace NC;
 
 
 /**
  * Front end content element "text".
  *
- * @author Leo Feyer <https://github.com/leofeyer>
+ * @package   NC Module Text And Image
+ * @author    Marcel Mathias Nolte
+ * @copyright Marcel Mathias Nolte 2015
  */
-class ModuleText extends \Module
+class ModuleNcText extends \Module
 {
 
 	/**
 	 * Template
 	 * @var string
 	 */
-	protected $strTemplate = 'mod_text';
+	protected $strTemplate = 'mod_nc_text';
 
 
 	/**
@@ -33,21 +42,6 @@ class ModuleText extends \Module
 	 */
 	public function generate()
 	{
-		if (TL_MODE == 'BE')
-		{
-			/*
-			$objTemplate = new \BackendTemplate('be_wildcard');
-
-			$objTemplate->wildcard = '### ' . utf8_strtoupper($GLOBALS['TL_LANG']['FMD']['login'][0]) . ' ###';
-			$objTemplate->title = $this->headline;
-			$objTemplate->id = $this->id;
-			$objTemplate->link = $this->name;
-			$objTemplate->href = 'contao/main.php?do=themes&amp;table=tl_module&amp;act=edit&amp;id=' . $this->id;
-
-			return $objTemplate->parse();
-			*/
-		}
-
 		return parent::generate();
 	}
 	
